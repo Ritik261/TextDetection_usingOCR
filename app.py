@@ -1,10 +1,18 @@
+import os
 import streamlit as st
 import numpy as np
 import pytesseract
 from PIL import Image
 
+# Installing Tesseract and language data (only if needed)
+if not os.path.isfile('/usr/bin/tesseract'):
+    st.warning('Installing Tesseract...')
+    os.system('apt-get update')
+    os.system('apt-get install -y tesseract-ocr')
+    os.system('apt-get install -y tesseract-ocr-hin')
+
 # Specify the path to Tesseract executable
-pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 
 st.title("Our OCR APP")
 st.text("Upload an image which contains English or Hindi Text")
